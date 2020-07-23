@@ -6,7 +6,7 @@ Template for typescript-based mono-repos
 
 - Monorepos powered by [yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/)
 
-```
+```bash
 $ yarn
 $ yarn test
 ```
