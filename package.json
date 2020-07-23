@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "//workspaces": "explicitly list packages till https://github.com/dependabot/dependabot-core/issues/1777 is cleared",
+  "workspaces": [
+    "pk-tsc"
+  ],
+  "scripts": {
+    "ls-all": "git ls-tree --name-only -r HEAD",
+    "prettier": "yarn ls-all | awk '{if(NR>2)print}' | xargs prettier --config .prettierrc --write",
+    "prettier:check": "yarn ls-all | awk '{if(NR>2)print}' | xargs prettier --config .prettierrc --check",
+    "tslint": "yarn ls-all | awk '{if(NR>2)print}' | xargs eslint --quiet",
+    "mdlint": "yarn ls-all | grep *.md | xargs markdownlint --config markdownlint.json",
+    "lint": "yarn tslint && yarn mdlint",
+    "spellcheck": "yarn ls-all | awk '{if(NR>2)print}' | xargs cspell --config cspell.json",
+    "test": "yarn jest"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
+}

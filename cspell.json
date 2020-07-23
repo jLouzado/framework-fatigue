@@ -1,0 +1,26 @@
+{
+  // Version of the setting file.  Always 0.1
+  "version": "0.1",
+  // language - current active spelling language
+  "language": "en",
+  // words - list of words to be always considered correct
+  "words": [
+    "eslintignore",
+    "markdownlint",
+    "mdlint",
+    "prettierrc",
+    "prettierignore",
+    "repo",
+    "repos"
+  ],
+  "dictionaries": ["node", "typescript"],
+  "ignorePaths": [
+    "node_modules/**",
+    "yarn.lock",
+    "package.json",
+    ".gitignore",
+    ".prettierignore",
+    ".prettierrc",
+    "LICENSE"
+  ]
+}

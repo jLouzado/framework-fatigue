@@ -1,0 +1,7 @@
+yarn.lock
+.eslintignore
+.prettierignore
+.gitignore
+LICENSE
+.github/dependabot.yml
+.github/workflows/node.js.yml
