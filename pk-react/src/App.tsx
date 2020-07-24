@@ -1,26 +1,68 @@
-import React from 'react'
-import logo from './logo.svg'
+import React, { Fragment } from 'react'
+import { Either } from 'standard-data-structures'
 import './App.css'
+import { AppResponse } from './App.types'
+import logo from './logo.svg'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
+
+interface AppState {
+  isLoading: boolean
+  response: Either<string, AppResponse>
+  page: number
+}
+
+class App extends React.Component<{}, AppState> {
+  constructor(props: {}) {
+    super(props)
+    this.state = {
+      isLoading: false,
+      response: Either.left('Nothing was fetched'),
+      page: 0
+    }
+  }
+
+  getUsers() {
+    this.setState({
+      isLoading: true
+    }, () => fetch('https://api.github.com/users')
+      .then((response) => response.json()).then(json => {
+        this.setState({
+          isLoading: false,
+          response: Either.right({
+            data: json
+          })
+        })
+      })
+      .catch((reason) =>
+        this.setState({
+          isLoading: false,
+          response: Either.left(reason)
+        })
+      ))
+  }
+
+  componentDidMount() {
+    this.getUsers()
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {this.state.isLoading ? (
+          <img src={logo} className="App-logo" alt="logo" />
+        ) : (
+            this.state.response
+              .map((res) => <Fragment>{res.data.map(user => <div key={user.id}>{user.login}</div>)}</Fragment>)
+              .getRightOrElse(
+                <div>
+                  {this.state.response.getLeftOrElse('Something Went Wrong')}
+                </div>
+              )
+
+          )}
+      </div>
+    )
+  }
 }
 
 export default App

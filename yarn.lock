@@ -11605,6 +11605,11 @@ stack-utils@^2.0.2:
   dependencies:
     escape-string-regexp "^2.0.0"
 
+standard-data-structures@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/standard-data-structures/-/standard-data-structures-4.0.0.tgz#d1adb6aebe8fe8c24ad7851a26f1fc99ff775cf1"
+  integrity sha512-nDw01Etm8J7Abki9uBn/d7yiKBEDZmDle0a/efSXM7TI1j5E1Lhj2uLAmFyV8UgRKZOfmvLVpxUwL/vNFBelmw==
+
 state-toggle@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/state-toggle/-/state-toggle-1.0.3.tgz#e123b16a88e143139b09c6852221bc9815917dfe"
