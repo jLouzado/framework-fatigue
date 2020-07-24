@@ -13,7 +13,9 @@ module.exports = {
     'plugin:jest/recommended',
     'plugin:jest/style',
     'plugin:import/errors',
-    'plugin:import/warnings'
+    'plugin:import/warnings',
+    'plugin:react/recommended'
+    "react-app"
   ],
   overrides: [
     {
