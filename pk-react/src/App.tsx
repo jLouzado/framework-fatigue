@@ -24,15 +24,17 @@ class App extends React.Component<{}, AppState> {
   }
 
   getUsers() {
+    const { page } = this.state
     this.setState({
       isLoading: true
-    }, () => fetch('https://api.github.com/users')
-      .then((response) => response.json()).then(json => {
+    }, () => fetch(`https://api.github.com/users?since${page}`)
+      .then((response) => response.json()).then((users: User[]) => {
         this.setState({
           isLoading: false,
           response: Either.right({
-            data: json
-          })
+            data: users
+          }),
+          page: users[users.length - 1].id
         })
       })
       .catch((reason) =>
