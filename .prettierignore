@@ -5,3 +5,7 @@ yarn.lock
 LICENSE
 .github/dependabot.yml
 .github/workflows/node.js.yml
+*.ico
+*.png
+*.txt
+*.svg

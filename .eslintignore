@@ -7,4 +7,16 @@ coverage
 .gitignore
 LICENSE
 yarn.lock
-*.md
+
+# Configs
+*.txt
+*.json
+
+# Images
+*.png
+*.svg
+*.ico
+
+# Web files
+*.css
+*.html

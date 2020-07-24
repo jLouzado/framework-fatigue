@@ -27,5 +27,4 @@ jobs:
     - run: yarn
     - run: yarn prettier:check
     - run: yarn lint
-    - run: yarn test
     - run: yarn spellcheck

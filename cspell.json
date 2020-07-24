@@ -11,7 +11,8 @@
     "prettierrc",
     "prettierignore",
     "repo",
-    "repos"
+    "repos",
+    "webfonts"
   ],
   "dictionaries": ["node", "typescript"],
   "ignorePaths": [
@@ -21,6 +22,7 @@
     ".gitignore",
     ".prettierignore",
     ".prettierrc",
-    "LICENSE"
+    "LICENSE",
+    "*.ico"
   ]
 }
