@@ -98,7 +98,11 @@ class App extends React.Component<{}, AppState> {
             <div className="chart">
               {this.state.selectedUser
                 .map((user) => (
-                  <UserRepo key={`${user.id}-chart`} repoUrl={user.repos_url} />
+                  <UserRepo
+                    key={`${user.id}-chart`}
+                    repoUrl={user.repos_url}
+                    username={user.login}
+                  />
                 ))
                 .getOrElse(<div>Please Select A User</div>)}
             </div>
