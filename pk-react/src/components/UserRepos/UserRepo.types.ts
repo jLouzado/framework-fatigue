@@ -21,6 +21,6 @@ export interface UserRepoState {
 }
 
 export interface UserRepoProps {
-    repoUrl: URL,
-    username: string
+  repoUrl: URL
+  username: string
 }
