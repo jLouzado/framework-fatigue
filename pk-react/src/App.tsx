@@ -3,6 +3,7 @@ import {Either, Option} from 'standard-data-structures'
 import './App.css'
 import {AppResponse, User} from './App.types'
 import logo from './logo.svg'
+import UserRepo from './components/UserRepos/UserRepo'
 
 interface AppState {
   isLoading: boolean
@@ -94,7 +95,13 @@ class App extends React.Component<{}, AppState> {
                   </div>
                 )}
             </div>
-            <div className="chart">Chart</div>
+            <div className="chart">
+              {this.state.selectedUser
+                .map((user) => (
+                  <UserRepo key={`${user.id}-chart`} repoUrl={user.repos_url} />
+                ))
+                .getOrElse(<div>Please Select A User</div>)}
+            </div>
           </div>
         )}
       </div>
