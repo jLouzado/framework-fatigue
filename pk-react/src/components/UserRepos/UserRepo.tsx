@@ -4,7 +4,8 @@ import React, {Fragment} from 'react'
 import {Either} from 'standard-data-structures'
 import {RepoData, UserRepoProps, UserRepoState} from './UserRepo.types'
 
-const randomColour = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`
+const randomColour = () =>
+  `#${Math.floor(Math.random() * 16777215).toString(16)}`
 
 class UserRepo extends React.Component<UserRepoProps, UserRepoState> {
   constructor(props: UserRepoProps) {
@@ -56,25 +57,15 @@ class UserRepo extends React.Component<UserRepoProps, UserRepoState> {
           .map((data) => {
             const dataBySeries = data.reduce<Record<string, RepoData[]>>(
               (acc, val) => {
-                acc[val.language] =
-                  acc[val.language] === undefined
+                acc[val.language ?? 'unknown'] =
+                  acc[val.language ?? 'unknown'] === undefined
                     ? Array.of(val)
-                    : acc[val.language].concat(Array.of(val))
+                    : acc[val.language ?? 'unknown'].concat(Array.of(val))
 
                 return acc
               },
               {}
             )
-
-            const series = Object.keys(dataBySeries).map((key) => ({
-              name: key,
-              color: randomColour(),
-              data: dataBySeries[key].map((repo) => [
-                  repo.open_issues_count,
-                repo.stargazers_count,
-                
-              ])
-            }))
 
             return (
               <Fragment key={'all-repos'}>
@@ -119,7 +110,59 @@ class UserRepo extends React.Component<UserRepoProps, UserRepoState> {
                         }
                       }
                     },
-                    series
+                    series: Object.keys(dataBySeries).map((key) => ({
+                      name: key,
+                      color: randomColour(),
+                      data: dataBySeries[key].map((repo) => [
+                        repo.open_issues_count,
+                        repo.stargazers_count
+                      ])
+                    }))
+                  }}
+                />
+                <HighChartsReact
+                  highcharts={Highcharts}
+                  options={{
+                    chart: {
+                      plotBackgroundColor: null,
+                      plotBorderWidth: null,
+                      plotShadow: false,
+                      type: 'pie'
+                    },
+                    title: {
+                      text: 'Repos by Language'
+                    },
+                    tooltip: {
+                      pointFormat:
+                        '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                      point: {
+                        valueSuffix: '%'
+                      }
+                    },
+                    plotOptions: {
+                      pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                          enabled: true,
+                          format:
+                            '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                      }
+                    },
+                    series: [
+                      {
+                        name: 'Language',
+                        colorByPoint: true,
+                        data: Object.keys(dataBySeries).map((key, index) => ({
+                          name: key,
+                          sliced: index === 0,
+                          y: (dataBySeries[key].length / data.length) * 100
+                        }))
+                      }
+                    ]
                   }}
                 />
               </Fragment>
