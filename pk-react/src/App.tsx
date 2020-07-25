@@ -4,7 +4,6 @@ import './App.css'
 import { AppResponse, User } from './App.types'
 import logo from './logo.svg'
 
-
 interface AppState {
   isLoading: boolean
   response: Either<string, AppResponse>
@@ -17,7 +16,7 @@ class App extends React.Component<{}, AppState> {
     super(props)
     this.state = {
       isLoading: false,
-      response: Either.left('Nothing was fetched'),
+      response: Either.left('Nothing Fetched'),
       page: 0,
       selectedUser: Option.none()
     }
@@ -25,24 +24,35 @@ class App extends React.Component<{}, AppState> {
 
   getUsers() {
     const { page } = this.state
-    this.setState({
-      isLoading: true
-    }, () => fetch(`https://api.github.com/users?since${page}`)
-      .then((response) => response.json()).then((users: User[]) => {
-        this.setState({
-          isLoading: false,
-          response: Either.right({
-            data: users
-          }),
-          page: users[users.length - 1].id
+    this.setState(
+      {
+        isLoading: true
+      },
+      () => fetch(`https://api.github.com/users?since${page}`)
+        .then((response) => {
+          if (response.ok) {
+            return response.json()
+          }
+          else throw Error(response.statusText)
         })
-      })
-      .catch((reason) =>
-        this.setState({
-          isLoading: false,
-          response: Either.left(reason)
+        .then((json: User[]) => {
+          this.setState({
+            isLoading: false,
+            response: Either.right({
+              data: json
+            }),
+            page: json[json.length - 1].id
+          })
         })
-      ))
+        .catch((reason: Error) => {
+          this.setState({
+            isLoading: false,
+            response: Either.left(reason.message),
+            page: 0,
+            selectedUser: Option.none()
+          })
+        })
+    )
   }
 
   componentDidMount() {
@@ -61,14 +71,28 @@ class App extends React.Component<{}, AppState> {
         {this.state.isLoading ? (
           <img src={logo} className="App-logo" alt="logo" />
         ) : (
-            this.state.response
-              .map((res) => <Fragment>{res.data.map(user => <div key={user.id} onClick={() => { this.onClick(user) }}>{user.login}</div>)}</Fragment>)
-              .getRightOrElse(
-                <div>
-                  {this.state.response.getLeftOrElse('Something Went Wrong')}
-                </div>
-              )
-
+            <div className="layout">
+              <div className="users">
+                {this.state.response
+                  .map((res) => (
+                    <Fragment>
+                      {res.data.map((user) => (
+                        <div
+                          key={user.id}
+                          onClick={() => {
+                            this.onClick(user)
+                          }}
+                        >
+                          {user.login}
+                        </div>
+                      ))}
+                    </Fragment>
+                  )).getRightOrElse(
+                    <div>{this.state.response.getLeftOrElse('Something went wrong')}</div>
+                  )}
+              </div>
+              <div className="chart">Chart</div>
+            </div>
           )}
       </div>
     )

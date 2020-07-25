@@ -6,10 +6,6 @@ export type User = {
   avatar_url: URL
   url: URL
   repos_url: URL
-  name: string
-  bio: string
-  public_repos: number
-  followers: number
 }
 
 export type AppResponse = {
