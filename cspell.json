@@ -12,7 +12,8 @@
     "prettierignore",
     "repo",
     "repos",
-    "webfonts"
+    "webfonts",
+    "highcharts"
   ],
   "dictionaries": ["node", "typescript"],
   "ignorePaths": [
