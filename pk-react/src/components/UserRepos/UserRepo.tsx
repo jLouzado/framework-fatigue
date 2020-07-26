@@ -111,17 +111,19 @@ class UserRepo extends React.Component<UserRepoProps, UserRepoState> {
                         },
                         tooltip: {
                           headerFormat: '<b>{series.name}</b><br>',
-                          pointFormat: '{point.x} issues, {point.y} stars'
+                          pointFormat:
+                            '{point.name}:  {point.x} 🐞, {point.y} ⭐'
                         }
                       }
                     },
                     series: Object.keys(dataBySeries).map((key) => ({
                       name: key,
                       color: randomColour(),
-                      data: dataBySeries[key].map((repo) => [
-                        repo.open_issues_count,
-                        repo.stargazers_count
-                      ])
+                      data: dataBySeries[key].map((repo) => ({
+                        x: repo.open_issues_count,
+                        y: repo.stargazers_count,
+                        name: repo.name
+                      }))
                     }))
                   }}
                 />
