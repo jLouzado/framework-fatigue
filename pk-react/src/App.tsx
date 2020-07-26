@@ -23,6 +23,7 @@ class App extends React.Component<{}, AppState> {
     }
   }
 
+  // TODO: implement load of next page
   getUsers() {
     const {page} = this.state
     this.setState(
@@ -66,6 +67,7 @@ class App extends React.Component<{}, AppState> {
     })
   }
 
+  // TODO: show actual buttons for user-list
   render() {
     return (
       <div className="App">
