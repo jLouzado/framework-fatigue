@@ -33,7 +33,12 @@ class UserRepo extends React.Component<UserRepoProps, UserRepoState> {
               isLoading: false,
               response:
                 json.length > 0
-                  ? Either.right(json)
+                  ? Either.right(
+                      json.map((repo) => ({
+                        ...repo,
+                        language: repo.language ?? 'Unknown'
+                      }))
+                    )
                   : Either.left('No Repos Found')
             })
           })
@@ -54,13 +59,13 @@ class UserRepo extends React.Component<UserRepoProps, UserRepoState> {
     return (
       <div>
         {this.state.response
-          .map((data) => {
-            const dataBySeries = data.reduce<Record<string, RepoData[]>>(
+          .map((repos) => {
+            const dataBySeries = repos.reduce<Record<string, RepoData[]>>(
               (acc, val) => {
-                acc[val.language ?? 'unknown'] =
-                  acc[val.language ?? 'unknown'] === undefined
+                acc[val.language] =
+                  acc[val.language] === undefined
                     ? Array.of(val)
-                    : acc[val.language ?? 'unknown'].concat(Array.of(val))
+                    : acc[val.language].concat(Array.of(val))
 
                 return acc
               },
@@ -69,7 +74,7 @@ class UserRepo extends React.Component<UserRepoProps, UserRepoState> {
 
             return (
               <Fragment key={'all-repos'}>
-                <div>{`${this.props.username} has ${data.length} Repos`}</div>
+                <div>{`${this.props.username} has ${repos.length} Repos`}</div>
                 <HighChartsReact
                   highcharts={Highcharts}
                   options={{
@@ -159,7 +164,7 @@ class UserRepo extends React.Component<UserRepoProps, UserRepoState> {
                         data: Object.keys(dataBySeries).map((key, index) => ({
                           name: key,
                           sliced: index === 0,
-                          y: (dataBySeries[key].length / data.length) * 100
+                          y: (dataBySeries[key].length / repos.length) * 100
                         }))
                       }
                     ]
