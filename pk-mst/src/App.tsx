@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import {Either, Option} from 'standard-data-structures'
 import './App.css'
-import {AppResponse, User} from './App.types'
+import {AppResponse, UserData} from './App.types'
 import logo from './logo.svg'
 import UserRepo from './components/UserRepos/UserRepo'
 
@@ -9,7 +9,7 @@ interface AppState {
   isLoading: boolean
   response: Either<string, AppResponse>
   page: number
-  selectedUser: Option<User>
+  selectedUser: Option<UserData>
 }
 
 class App extends React.Component<Record<string, unknown>, AppState> {
@@ -36,7 +36,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
               return response.json()
             } else throw Error(response.statusText)
           })
-          .then((json: User[]) => {
+          .then((json: UserData[]) => {
             this.setState({
               isLoading: false,
               response: Either.right({
@@ -60,7 +60,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
     this.getUsers()
   }
 
-  onClick(username: User) {
+  onClick(username: UserData) {
     this.setState({
       selectedUser: Option.some(username)
     })

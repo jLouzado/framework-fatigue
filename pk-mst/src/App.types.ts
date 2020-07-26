@@ -1,6 +1,6 @@
 export type URL = string
 
-export type User = {
+export type UserData = {
   login: string
   id: number
   avatar_url: URL
@@ -9,5 +9,5 @@ export type User = {
 }
 
 export type AppResponse = {
-  data: Array<User>
+  data: Array<UserData>
 }
