@@ -12,8 +12,8 @@ interface AppState {
   selectedUser: Option<User>
 }
 
-class App extends React.Component<{}, AppState> {
-  constructor(props: {}) {
+class App extends React.Component<Record<string, unknown>, AppState> {
+  constructor(props: Record<string, unknown>) {
     super(props)
     this.state = {
       isLoading: false,
