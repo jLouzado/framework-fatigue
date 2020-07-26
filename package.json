@@ -3,7 +3,8 @@
   "//workspaces": "explicitly list packages till https://github.com/dependabot/dependabot-core/issues/1777 is cleared",
   "workspaces": [
     "pk-tsc",
-    "pk-react"
+    "pk-react",
+    "pk-mst"
   ],
   "scripts": {
     "ls-all": "git ls-tree --name-only -r HEAD",
