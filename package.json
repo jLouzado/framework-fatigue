@@ -2,7 +2,6 @@
   "private": true,
   "//workspaces": "explicitly list packages till https://github.com/dependabot/dependabot-core/issues/1777 is cleared",
   "workspaces": [
-    "pk-tsc",
     "pk-react",
     "pk-mst"
   ],
