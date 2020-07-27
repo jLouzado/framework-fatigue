@@ -1,43 +1,13 @@
-# Typescript-Monorepo Boilerplate
+# The `Framework Fatigue` Project
 
-Template for typescript-based mono-repos
+There's a new JS framework coming out everyday, and all of them are the next greatest thing ever.
 
-## Monorepo
+This is my attempt to organize the chaos and gather my learnings in a structured way.
 
-- Monorepos powered by [yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/)
+## Structure
 
-```bash
-$ yarn
-$ yarn test
-```
-
-The first package package is setup with the following:
-
-## Testing
-
-- jest
-- chai
-
-## Linting
-
-- prettier
-- tslint
-  - I like the options quite strict but please customize to your comfort
-- spellcheck
-
-## CI
-
-- ci via Github Actions
-
-## Setup
-
-- Just make a new repo with this as a template
-- rename the packages, (and the name in package.json) and you're good to go
-
-## Automation Wishlist
-
-- pre-commit hooks
-- graphql
-- publish package with [xyz](https://github.com/davidchambers/xyz)
-- assert aspects of architecture with: [dependency-cruiser](https://www.npmjs.com/package/dependency-cruiser)
-- remove the `quiet` of eslint once I figure out how to filter out files in eslintignore so it [doesn't cry](https://stackoverflow.com/a/59549917/3121906)
+- Each package is it's own experiment
+- I try to implement a simple app in each
+  - just fetching some users from Github and showing charts for their repos
+- I might not implement every feature in every framework, I'm just trying to get a feel for them
+- Mostly the focus is on state management & side-effects so that would be where I'd start
