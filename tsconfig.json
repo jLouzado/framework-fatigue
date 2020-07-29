@@ -27,7 +27,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "strictFunctionTypes": true
+    "strictFunctionTypes": true,
+    "experimentalDecorators": true
   },
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

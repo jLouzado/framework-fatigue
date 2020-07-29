@@ -9,6 +9,6 @@ export const FetcherModel = types.model({}).actions((self) => ({
     }
   }),
   onResponse() {
-      // save logic
+    // save logic
   }
 }))
