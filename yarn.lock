@@ -5742,10 +5742,10 @@ highcharts-react-official@^3.0.0:
   resolved "https://registry.yarnpkg.com/highcharts-react-official/-/highcharts-react-official-3.0.0.tgz#f2e81ed59d299c3473a0dd5ba5df24028875226a"
   integrity sha512-VefJgDY2hkT9gfppsQGrRF2g5u8d9dtfHGcx2/xqiP+PkZXCqalw9xOeKVCRvJKTOh0coiDFwvVjOvB7KaGl4A==
 
-highcharts@^8.1.2:
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-8.1.2.tgz#a4e7d74a6140028e676a3a54f5fd0ea6ccbcc90e"
-  integrity sha512-Q124Lj+2+bVY2MKMd7d8uSVAmhZVzWgknUUzUBEC27S94dCyK6PBgahuwiMP/ET4w7qSFBBi4OC77ZUb0Vnuyg==
+highcharts@^9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-9.1.1.tgz#919223d7ccc429af8237a591855d8f48bea13872"
+  integrity sha512-dNkUIJUNMh/G2TxQxxlQeILVs9tXiXQRxVkNGU9SLCh2zB2jcjJ7aQdgA0k7PFTEvDVUHphumZ301sHkDS7/pg==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
